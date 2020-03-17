@@ -7,7 +7,8 @@
     "start": "nodemon src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "docker": "bash ./scripts/docker.sh"
   },
   "repository": {
     "type": "git",

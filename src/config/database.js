@@ -12,5 +12,5 @@ try {
     auto_reconnect: true,
   })
 } catch (error) {
-  console.log('FAIL CONNECTION!')
+  console.log('ERROR DB: ', error)
 }

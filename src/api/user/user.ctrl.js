@@ -10,41 +10,31 @@ class UserController extends BaseResponse {
   async index(req, res, next) {
     try {
       const data = await this.User.find()
-      this.sendResponse(res, next, {
-        data,
-        messages: 'OK!',
-        status: 201,
-      })
+      this.sendResponse(res, next, { status: 201, data })
     } catch (error) {
-      this.sendError(res, next, {
-        messages: 'NOK!',
-        status: 401,
-      })
+      this.sendError(res, next, { status: 401, messages: error.message })
     }
   }
 
   async store(req, res, next) {
-    const {
-      body: { username, email, nickname },
-    } = req
     try {
-      if (username && email && nickname) {
-        await this.User.create({ username, email, nickname })
-        this.sendResponse(res, next, {
-          messages: 'OK!',
-          status: 201,
+      const { usename, email, nickname, password } = req.body
+      if (usename && email && nickname && password) {
+        const data = await this.User.create({
+          usename,
+          email,
+          nickname,
+          password,
         })
+        this.sendResponse(res, next, { status: 201, data })
       } else {
         this.sendError(res, next, {
-          messages: 'SET BODY PARAMS!',
           status: 402,
+          messages: 'Error params on body',
         })
       }
     } catch (error) {
-      this.sendError(res, next, {
-        messages: 'NOK!',
-        status: 401,
-      })
+      this.sendError(res, next, { status: 401, messages: error.message })
     }
   }
 }

@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose'
 
-let UserSchema = Schema({
-  username: {
+const userSchema = Schema({
+  usename: {
     type: String,
     lowercase: true,
     required: true,
@@ -16,10 +16,10 @@ let UserSchema = Schema({
     required: true,
     unique: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  password: {
+    type: String,
+    required: true,
   },
 })
 
-export default model('User', UserSchema)
+export default model('User', userSchema)
